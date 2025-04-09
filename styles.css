@@ -1,0 +1,132 @@
+/* Basic styling - aiming to match reference style */
+body {
+    font-family: sans-serif; /* Common default font */
+    line-height: 1.6;
+    margin: 1em auto; /* Center content with auto margins */
+    padding: 0 1em;   /* Padding on sides */
+    max-width: 800px; /* Limit content width, similar to reference */
+    background-color: #fff; /* Explicit white background */
+    color: #333; /* Default text color */
+}
+
+.container { 
+    /* Container is less necessary now body limits width */
+    /* padding: 1em; Remove extra padding if body handles it */
+}
+
+/* Headings - matching reference hierarchy */
+h1, h2, h3 { 
+    color: #333; 
+    font-weight: bold;
+}
+
+h1.main-title {
+    text-align: center;
+    font-size: 1.8em; 
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    color: #660099; /* Manchester Purple */
+}
+
+/* Reference has H1 for chapter title too */
+h1.chapter-title {
+    text-align: center;
+    font-size: 1.6em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #660099; /* Manchester Purple */
+}
+
+h2.section-title { 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 0.3em; 
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    font-size: 1.4em;
+    color: #660099; /* Manchester Purple */
+}
+
+h3 { /* If used later */
+    font-size: 1.2em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+/* Paragraphs and Links */
+p {
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+}
+
+a { 
+    color: #007bff; /* Standard link color */
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Lists - standard styling */
+ul, ol { 
+    margin-left: 20px; 
+    padding-left: 1.5em; /* Indentation for list items */
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+li { 
+    margin-bottom: 0.5em; 
+}
+
+ul ul, ol ol, ul ol, ol ul {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+} 
+
+strong { 
+    font-weight: bold; 
+}
+
+/* --- Slide Functionality Styles (Keep as requested) --- */
+.slide {
+    display: none; /* Hide all slides by default */
+    animation: fadeIn 0.5s; /* Simple fade-in animation */
+    min-height: 60vh; /* Ensure slides take up reasonable vertical space */
+    padding-bottom: 4em; /* More space before fixed navigation hint */
+}
+.slide.active {
+    display: block; /* Show the active slide */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.navigation-hint {
+    text-align: center;
+    margin-top: 1em; 
+    padding: 8px 0;
+    font-style: italic;
+    color: #666;
+    position: fixed; /* Keep hint visible */
+    bottom: 0px;     /* Position at the very bottom */
+    left: 0;
+    right: 0;
+    background-color: rgba(248, 248, 248, 0.95); /* Slightly off-white background */
+    border-top: 1px solid #eee; /* Separator line */
+    z-index: 10; /* Ensure it's above slide content */
+    font-size: 0.9em;
+}
+
+/* --- Responsive Adjustments (Keep as requested) --- */
+@media (max-width: 600px) {
+    body {
+        margin: 0.5em auto; /* Reduce top/bottom margin on mobile */
+        padding: 0 0.8em; /* Reduce side padding */
+    }
+    h1.main-title { font-size: 1.6em; }
+    h1.chapter-title { font-size: 1.4em; }
+    h2.section-title { font-size: 1.3em; }
+    p, li { font-size: 0.95em; }
+    ul, ol { padding-left: 1.2em; } /* Reduce list indent */
+} 
