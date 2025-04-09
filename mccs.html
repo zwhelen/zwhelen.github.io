@@ -320,7 +320,7 @@
         }
     }
 
-    document.querySelectorAll('strong[title]').forEach(element => {
+    document.querySelectorAll('span[title]').forEach(element => {
         const tooltipText = element.getAttribute('title');
         element.setAttribute('data-tooltip', tooltipText);
         element.removeAttribute('title');
