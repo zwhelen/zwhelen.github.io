@@ -169,6 +169,8 @@
 <script>
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
+    let touchStartX = null;
+    let touchStartY = null;
 
     function showSlide(index) {
         slides.forEach((slide, i) => {
@@ -193,6 +195,62 @@
         }
     }
 
+    function handleTouchStart(e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    }
+
+    function handleTouchMove(e) {
+        if (!touchStartX || !touchStartY) {
+            return;
+        }
+
+        const touchEndX = e.touches[0].clientX;
+        const touchEndY = e.touches[0].clientY;
+
+        const deltaX = touchStartX - touchEndX;
+        const deltaY = touchStartY - touchEndY;
+
+        // Only prevent default if the swipe is more horizontal than vertical
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            e.preventDefault();
+        }
+    }
+
+    function handleTouchEnd(e) {
+        if (!touchStartX) {
+            return;
+        }
+
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+
+        const deltaX = touchStartX - touchEndX;
+        const deltaY = touchStartY - touchEndY;
+
+        // Minimum swipe distance (in pixels)
+        const minSwipeDistance = 50;
+
+        // Only handle horizontal swipes
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+            if (deltaX > 0) {
+                nextSlide(); // Swipe left
+            } else {
+                prevSlide(); // Swipe right
+            }
+        }
+
+        // Reset touch coordinates
+        touchStartX = null;
+        touchStartY = null;
+    }
+
+    // Add touch event listeners
+    document.addEventListener('touchstart', handleTouchStart, { passive: false });
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener('touchend', handleTouchEnd);
+
+    // Keep keyboard navigation
     document.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowRight') {
             nextSlide();
